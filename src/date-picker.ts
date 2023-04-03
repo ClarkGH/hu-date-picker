@@ -64,6 +64,21 @@ export class MyElement extends LitElement {
     }
   }
 
+  private _onMonthChange(e: Event) {
+    this.selectedMonth = parseInt((e.target as HTMLSelectElement).value);
+  }
+  
+  private _onYearChange(e: Event) {
+    this.selectedYear = parseInt((e.target as HTMLSelectElement).value);
+  }
+
+  private _onDaySelect(e: Event) {
+    const day = (e.target as HTMLDivElement).textContent;
+    this.selectedDay = parseInt(day || '');
+    const date = new Date(this.selectedYear, this.selectedMonth - 1, this.selectedDay);
+    this.selectedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+  }  
+
   private _renderDatePicker() {
     const daysInMonth = new Date(this.selectedYear, this.selectedMonth, 0).getDate();
     const daysArray = Array.from({ length: daysInMonth }, (_, i) => i + 1);
@@ -111,7 +126,7 @@ export class MyElement extends LitElement {
         }
       }
   
-      daysGrid.push(html`<div class="day">${day}</div>`);
+      daysGrid.push(html`<div class="day" @click="${this._onDaySelect}">${day}</div>`);
   
       // add empty div elements to fill in the days after the last day of the month
       if (day === daysInMonth) {
@@ -124,8 +139,8 @@ export class MyElement extends LitElement {
     return html`
       <div class="date-picker">
         <div class="month-year__picker">
-          <select>${monthOptions}</select>
-          <select>${yearOptions}</select>
+          <select @change="${this._onMonthChange}">${monthOptions}</select>
+          <select @change="${this._onYearChange}">${yearOptions}</select>
         </div>
         <div class="day__picker">
         <div class="week">
