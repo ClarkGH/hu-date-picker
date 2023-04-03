@@ -1,0 +1,27 @@
+{
+  "name": "hu-date-picker",
+  "private": true,
+  "version": "0.5.0",
+  "type": "module",
+  "main": "dist/date-picker.es.js",
+  "exports": {
+    ".": "./dist/date-picker.es.js"
+  },
+  "types": "types/date-picker.d.ts",
+  "files": [
+    "dist",
+    "types"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.7",
+    "lit": "^2.6.1"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.3",
+    "vite": "^4.2.0"
+  }
+}
