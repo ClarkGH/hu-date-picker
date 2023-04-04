@@ -1,5 +1,5 @@
 # hu-date-picker
-Date Picker, attempted to be more consistent than built-in.
+POC date-picker. Consistent across browsers.
 
 ## Running Locally
 1. Clone Repo
